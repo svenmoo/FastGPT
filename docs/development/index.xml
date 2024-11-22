@@ -23,11 +23,9 @@ MongoDB：用于存储除了向量外的各类数据
 PostgreSQL/Milvus：存储向量数据
 OneAPI: 聚合各类 AI API，支持多模型调用 （任何模型问题，先自行通过 OneAPI 测试校验）
 推荐配置 linkPgVector版本 link体验测试首选
-环境 最低配置（单节点） 推荐配置 测试 2c2g 2c4g 100w 组向量 4c8g 50GB 4c16g 50GB 500w 组向量 8c32g 200GB 16c64g 200GB Milvus版本 link暂不推荐，部分系统存在精度丢失，等待修复。
-对于千万级以上向量性能更优秀。
+环境 最低配置（单节点） 推荐配置 测试 2c2g 2c4g 100w 组向量 4c8g 50GB 4c16g 50GB 500w 组向量 8c32g 200GB 16c64g 200GB Milvus版本 link生产部署首选，对于千万级以上向量性能更优秀。
 点击查看 Milvus 官方推荐配置
-环境 最低配置（单节点） 推荐配置 测试 2c8g 4c16g 100w 组向量 未测试 500w 组向量 zilliz cloud版本 link暂不推荐，部分系统存在精度丢失，等待修复。
-亿级以上向量首选。
+环境 最低配置（单节点） 推荐配置 测试 2c8g 4c16g 100w 组向量 未测试 500w 组向量 zilliz cloud版本 linkMilvus 的全托管服务，性能优于 Milvus 并提供 SLA，点击使用 Zilliz Cloud。
 由于向量库使用了 Cloud，无需占用本地资源，无需太关注。
 前置工作 link1. 确保网络环境 link如果使用OpenAI等国外模型接口，请确保可以正常访问，否则会报错：Connection error 等。 方案可以参考：代理方案
 2. 准备 Docker 环境 link Linux MacOS Windows # 安装 Docker curl -fsSL https://get.</description></item><item><title>配置文件介绍</title><link>https://doc.tryfastgpt.ai/docs/development/configuration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.tryfastgpt.ai/docs/development/configuration/</guid><description>由于环境变量不利于配置复杂的内容，新版 FastGPT 采用了 ConfigMap 的形式挂载配置文件，你可以在 projects/app/data/config.json 看到默认的配置文件。可以参考 docker-compose 快速部署 来挂载配置文件。
