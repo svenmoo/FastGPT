@@ -36,7 +36,7 @@ Table of Contents</button><nav id=toc-mobile><ul class=dropdown-menu><li><ul><li
   <code>curl --location --request POST &#39;https://{{host}}/api/admin/initv4815&#39; \
 --header &#39;rootkey: {{rootkey}}&#39; \
 --header &#39;Content-Type: application/json&#39;</code>
-  </pre></div><p>会重置应用定时执行的字段，把 null 去掉，减少索引大小。</p><hr><p>从任意终端，发起 1 个 HTTP 请求。其中 {{rootkey}} 替换成环境变量里的 <code>rootkey</code>；{{host}} 替换成<strong>FastGPT 域名</strong>。</p><div class=prism-codeblock><pre id=5b37d80 class=language-bash>
+  </pre></div><p>会重置应用定时执行的字段，把 null 去掉，减少索引大小。</p><hr><p>从任意终端，发起 1 个 HTTP 请求。其中 {{rootkey}} 替换成环境变量里的 <code>rootkey</code>；{{host}} 替换成<strong>fastgpt-pro域名</strong>。</p><div class=prism-codeblock><pre id=5b37d80 class=language-bash>
   <code>curl --location --request POST &#39;https://{{host}}/api/admin/refreshFreeUser&#39; \
 --header &#39;rootkey: {{rootkey}}&#39; \
 --header &#39;Content-Type: application/json&#39;</code>
