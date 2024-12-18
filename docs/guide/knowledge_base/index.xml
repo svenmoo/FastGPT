@@ -39,7 +39,20 @@ API 文件库能够让用户轻松对接已有的文档库，只需要按照 Fas
 你需要提供两个参数：
 baseURL: 文件服务接口的 baseURL authorization: 用于身份验证的请求头信息，实际请求格式为 Authorization: Bearer &amp;lt;token&amp;gt; 接口规范 link接口响应格式：
 type ResponseType = { success: boolean; message: string; data: any; } 数据类型：
-// 文件列表中，单项的文件类型 type FileListItem = { id: string; parentId: string | null; name: string; type: &amp;#39;file&amp;#39; | &amp;#39;folder&amp;#39;; updateTime: Date; createTime: Date; } 1.</description></item><item><title>Web 站点同步</title><link>https://doc.tryfastgpt.ai/docs/guide/knowledge_base/websync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.tryfastgpt.ai/docs/guide/knowledge_base/websync/</guid><description>该功能目前仅向商业版用户开放。
+// 文件列表中，单项的文件类型 type FileListItem = { id: string; parentId: string | null; name: string; type: &amp;#39;file&amp;#39; | &amp;#39;folder&amp;#39;; updateTime: Date; createTime: Date; } 1.</description></item><item><title>飞书知识库</title><link>https://doc.tryfastgpt.ai/docs/guide/knowledge_base/lark_dataset/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.tryfastgpt.ai/docs/guide/knowledge_base/lark_dataset/</guid><description>FastGPT v4.8.16 版本开始，商业版用户支持飞书知识库导入，用户可以通过配置飞书应用的 appId 和 appSecret，并选中一个文档空间的顶层文件夹来导入飞书知识库。目前处于测试阶段，部分交互有待优化。
+由于飞书限制，无法直接获取所有文档内容，目前仅可以获取共享空间下文件目录的内容，无法获取个人空间和知识库里的内容。
+1. 创建飞书应用 link打开 飞书开放平台，点击创建应用，选择自建应用，然后填写应用名称。
+2. 配置应用权限 link创建应用后，进入应用可以配置相关权限，这里需要增加两个权限：
+获取云空间文件夹下的云文档清单 查看新版文档 3. 获取 appId 和 appSecret link 4. 给 Folder 增加权限 link可参考飞书教程： https://open.feishu.cn/document/server-docs/docs/drive-v1/faq#b02e5bfb
+大致总结为：
+把刚刚创建的应用拉入一个群里 给这个群增加目录权限 如果你的目录已经给全员组增加权限了，则可以跳过上面步骤，直接获取 Folder Token。
+5. 获取 Folder Token link可以页面路径上获取 Folder Token，注意不要把问号复制进来。
+6. 创建知识库 link根据 3 和 5 获取到的 3 个参数，创建知识库，选择飞书文件库类型，然后填入对应的参数，点击创建。</description></item><item><title>语雀文件库</title><link>https://doc.tryfastgpt.ai/docs/guide/knowledge_base/yuque_dataset/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.tryfastgpt.ai/docs/guide/knowledge_base/yuque_dataset/</guid><description>FastGPT v4.8.16 版本开始，商业版用户支持语雀文件库导入，用户可以通过配置语雀的 token 和 uid 来导入语雀文档库。目前处于测试阶段，部分交互有待优化。
+1. 获取语雀的 token 和 uid link在语雀首页 - 个人头像 - 设置，可找到对应参数。
+参考下图获取 Token 和 User ID，注意给 Token 赋值权限：
+获取 Token 增加权限 获取 User ID 2. 创建知识库 link使用上一步获取的 token 和 uid，创建知识库，选择语雀文件库类型，然后填入对应的参数，点击创建。
+3. 导入文档 link创建完知识库后，点击添加文件即可导入语雀的文档库，跟随引导即可。
+语雀知识库支持定时同步功能，每天会不定时的扫描一次，如果文档有更新，则会进行同步，也可以进行手动同步。</description></item><item><title>Web 站点同步</title><link>https://doc.tryfastgpt.ai/docs/guide/knowledge_base/websync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.tryfastgpt.ai/docs/guide/knowledge_base/websync/</guid><description>该功能目前仅向商业版用户开放。
 什么是 Web 站点同步 linkWeb 站点同步利用爬虫的技术，可以通过一个入口网站，自动捕获同域名下的所有网站，目前最多支持200个子页面。出于合规与安全角度，FastGPT 仅支持静态站点的爬取，主要用于各个文档站点快速构建知识库。
 Tips: 国内的媒体站点基本不可用，公众号、csdn、知乎等。可以通过终端发送curl请求检测是否为静态站点，例如：
 curl https://doc.tryfastgpt.ai/docs/intro/ 如何使用 link1. 新建知识库，选择 Web 站点同步 link 2. 点击配置站点信息 link 3. 填写网址和选择器 link 好了， 现在点击开始同步，静等系统自动抓取网站信息即可。

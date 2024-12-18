@@ -14,7 +14,16 @@ ChatGPT Web 示例：</description></item><item><title>接入飞书机器人教�
 Encrypt Key 用于加密飞书服务器与 FastGPT 之间通信。 建议如果使用 Https 协议，则不需要 Encrypt Key。如果使用 Http 协议通信，则建议使用 Encrypt Key Verification Token 默认生成的这个 Token 用于校验来源。但我们使用飞书官方推荐的另一种更为安全的校验方式，因此可以忽略这个配置项。
 4. 配置回调地址 link新建好发布渠道后，点击请求地址，复制对应的请求地址。
 在飞书控制台，点击左侧的 事件与回调 ，点击配置订阅方式旁边的编辑 icon，粘贴刚刚复制的请求地址到输入框中。
-5. 配置机器人回调事件和权限 link 添加 接收消息 事件 在事件与回调页面，点击添加事件。</description></item><item><title>接入微信公众号教程</title><link>https://doc.tryfastgpt.ai/docs/use-cases/external-integration/official_account/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.tryfastgpt.ai/docs/use-cases/external-integration/official_account/</guid><description>从 4.8.10 版本起，FastGPT 商业版支持直接接入微信公众号，无需额外的 API。
+5. 配置机器人回调事件和权限 link 添加 接收消息 事件 在事件与回调页面，点击添加事件。</description></item><item><title>接入钉钉机器人教程</title><link>https://doc.tryfastgpt.ai/docs/use-cases/external-integration/dingtalk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.tryfastgpt.ai/docs/use-cases/external-integration/dingtalk/</guid><description>从 4.8.16 版本起，FastGPT 商业版支持直接接入钉钉机器人，无需额外的 API。
+1. 创建钉钉企业内部应用 link 在钉钉开发者后台创建企业内部应用。 获取Client ID和Client Secret。 2. 为 FastGPT 添加发布渠道 link在 FastGPT 中选择要接入的应用，在发布渠道页面，新建一个接入钉钉机器人的发布渠道。
+将前面拿到的 Client ID 和 Client Secret 填入配置弹窗中。
+创建完成后，点击请求地址按钮，然后复制回调地址。
+3. 为应用添加机器人应用能力。 link在钉钉开发者后台，点击左侧添加应用能力，为刚刚创建的企业内部应用添加 机器人 应用能力。
+4. 配置机器人回调地址 link点击左侧机器人 应用能力，然后将底部消息接受模式设置为HTTP模式，消息接收地址填入前面复制的 FastGPT 的回调地址。
+调试完成后，点击发布。
+5. 发布应用 link机器人发布后，还需要在版本管理与发布页面发布应用版本。
+点击创建新版本后，设置版本号和版本描述后点击保存发布即可。
+应用发布后，即可在钉钉企业中使用机器人功能，可对机器人私聊。或者在群组添加机器人后@机器人，触发对话。</description></item><item><title>接入微信公众号教程</title><link>https://doc.tryfastgpt.ai/docs/use-cases/external-integration/official_account/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.tryfastgpt.ai/docs/use-cases/external-integration/official_account/</guid><description>从 4.8.10 版本起，FastGPT 商业版支持直接接入微信公众号，无需额外的 API。
 注意⚠️: 目前只支持通过验证的公众号（服务号和订阅号都可以）
 1. 在 FastGPT 新建发布渠道 link在 FastGPT 中选择想要接入的应用，在 发布渠道 页面，新建一个接入微信公众号的发布渠道，填写好基础信息。
 2. 登录微信公众平台，获取 AppID 、 Secret和Token link1. https://mp.weixin.qq.com 登录微信公众平台，选择您的公众号。 link只支持通过验证的公众号，未通过验证的公众号暂不支持。
