@@ -20,19 +20,20 @@ FastGPT 遵循附加条件 Apache License 2.0 开源协议，你可以 Fork 之�
 应用创建后来再应用详情页找到「知识库」模块，把我们刚刚创建的知识库添加进去。
 添加完知识库后记得点击「保存并预览」，这样我们的应用就和知识库关联起来了。
 然后我们就可以愉快的开始聊天啦。</description></item><item><title>AI 相关参数配置说明</title><link>https://doc.tryfastgpt.ai/docs/guide/course/ai_settings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.tryfastgpt.ai/docs/guide/course/ai_settings/</guid><description>在 FastGPT 的 AI 对话模块中，有一个 AI 高级配置，里面包含了 AI 模型的参数配置，本文详细介绍这些配置的含义。
-返回AI内容（高级编排特有） link这是一个开关，打开的时候，当 AI 对话模块运行时，会将其输出的内容返回到浏览器（API响应）；如果关闭，AI 输出的内容不会返回到浏览器，但是生成的内容仍可以通过【AI回复】进行输出。你可以将【AI回复】连接到其他模块中。
+流响应（高级编排 AI 对话 特有） link旧版名字叫做：返回 AI 内容；新版改名：流响应。
+这是一个开关，打开的时候，当 AI 对话模块运行时，会将其输出的内容返回到浏览器（API响应）； 如果关闭，会强制使用非流模式调用模型，并且 AI 输出的内容不会返回到浏览器，但是生成的内容仍可以通过【AI回复】进行输出。你可以将【AI回复】连接到其他模块中进行二次使用。
 最大上下文 link代表模型最多容纳的文字数量。
 函数调用 link支持函数调用的模型，在使用工具时更加准确。
 温度 link越低回答越严谨，少废话（实测下来，感觉差别不大）
 回复上限 link最大回复 token 数量。注意，是回复的Tokens！不是上下文 tokens。
+通常，回复上限=min(模型允许的最大回复上限, 最大上下文-已用上下文)
+所以，一般配置模型时，不会把最大上下文配置成模型实际最大上下文，而是预留预定空间给回答，例如 128k 模型，可以配置 max_context=115000
 系统提示词 link被放置在上下文数组的最前面，role 为 system，用于引导模型。
-引用模板 &amp;amp; 引用提示词 link这两个参数与知识库问答场景相关，可以控制知识库相关的提示词。
+最大对话轮数（仅简易模式） link可以配置模型支持的最大对话轮数，如果模型的超出上下文，系统会自动截断，尽可能保证不超模型上下文。
+所以尽管配置 30 轮对话，实际运行时候，不一定会达到 30 轮。
+引用模板 &amp;amp; 引用提示词 link进行知识库搜索后，你可以自定义组织检索结果构成的提示词，这个配置，仅工作流中 AI 对话节点可用。并且，只会在有引用知识库内容时才会生效。
 AI 对话消息组成 link想使用明白这两个变量，首先要了解传递传递给 AI 模型的消息格式。它是一个数组，FastGPT 中这个数组的组成形式为：
-[ 内置提示词（config.json 配置，一般为空） 系统提示词 （用户输入的提示词） 历史记录 问题（由引用提示词、引用模板和用户问题组成） ] 🍅
-Tips: 可以通过点击上下文按键查看完整的上下文组成，便于调试。
-引用模板和提示词设计 link简易模式已移除该功能，仅在工作流中可配置，可点击工作流中AI对话节点内，知识库引用旁边的setting icon进行配置。随着模型的增强，这部分功能将逐步弱化。
-引用模板和引用提示词通常是成对出现，引用提示词依赖引用模板。
-FastGPT 知识库采用 QA 对(不一定都是问答格式，仅代表两个变量)的格式存储，在转义成字符串时候会根据引用模板来进行格式化。知识库包含多个可用变量： q, a, sourceId（数据的ID）, index(第n个数据), source(数据的集合名、文件名)，score(距离得分，0-1) 可以通过 {{q}} {{a}} {{sourceId}} {{index}} {{source}} {{score}} 按需引入。下面一个模板例子：</description></item><item><title>对话问题引导</title><link>https://doc.tryfastgpt.ai/docs/guide/course/chat_input_guide/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.tryfastgpt.ai/docs/guide/course/chat_input_guide/</guid><description> 什么是自定义问题引导 link你可以为你的应用提前预设一些问题，用户在输入时，会根据输入的内容，动态搜索这些问题作为提示，从而引导用户更快的进行提问。
+[ 内置提示词（config.json 配置，一般为空） 系统提示词 （用户输入的提示词） 历史记录 问题（由引用提示词、引用模板和用户问题组成） ] 🍅</description></item><item><title>对话问题引导</title><link>https://doc.tryfastgpt.ai/docs/guide/course/chat_input_guide/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://doc.tryfastgpt.ai/docs/guide/course/chat_input_guide/</guid><description> 什么是自定义问题引导 link你可以为你的应用提前预设一些问题，用户在输入时，会根据输入的内容，动态搜索这些问题作为提示，从而引导用户更快的进行提问。
 你可以直接在 FastGPT 中配置词库，或者提供自定义词库接口。
 自定义词库接口 link需要保证这个接口可以被用户浏览器访问。
 请求：
